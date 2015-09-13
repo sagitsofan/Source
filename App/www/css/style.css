@@ -1,0 +1,23 @@
+.pane, .view{
+	background: #e3e9f9;
+}
+
+
+
+.title-image{
+	height: 33px;
+    margin-top: 5px;
+}
+
+.imagePlaceHolder{
+	line-height: 250px;
+	border: 1px solid rgb(238, 238, 238);
+	border-radius: 3px;
+	text-align: center;
+	width: 100%;
+	background-color: rgb(255, 255, 255);
+	background-size: cover;
+	height:200px;
+}
+
+
