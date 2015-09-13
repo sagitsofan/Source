@@ -1,0 +1,10 @@
+{
+  "name": "Node.Api",
+  "version": "0.0.0",
+  "description": "Node.Api",
+  "main": "server.js",
+  "author": {
+    "name": "Sagi",
+    "email": ""
+  }
+}
