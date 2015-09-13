@@ -1,0 +1,10 @@
+{
+  "name": "Node.MongoUI",
+  "version": "0.0.0",
+  "description": "Node.MongoUI",
+  "main": "server.js",
+  "author": {
+    "name": "Sagi",
+    "email": ""
+  }
+}
