@@ -1,5 +1,4 @@
 ctrlApp
-
 .factory('Camera', ['$q', function ($q) {
         
         return {
@@ -26,17 +25,14 @@ ctrlApp
 
 
 ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) {
-        
         var data = {};
         var baseUrl = "http://localhost:1337/api";
         
         data.getFeed = function (schema) {
-            
             return $http.get(baseUrl + '/feed');
         }
         
         data.getAroundMe = function (schema) {
-            
             return $http.get(baseUrl + '/feed');
         }
 

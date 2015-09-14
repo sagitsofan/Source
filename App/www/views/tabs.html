@@ -26,22 +26,25 @@
             <ion-tab title="לאן היום" icon="ion-ios7-paperplane-outline">
                 <ion-content padding="false" class="has-header">
 
-
-                    <div class="list card" ng-repeat="item in feed" ng-init="postLiked=false">
+                    <div class="list card post" ng-repeat="item in feed" ng-init="postLiked=false">
                         <div ng-click="openModal(item.id)" class="item item-divider" dir="rtl">{{item.title}}</div>
                         <div class="item item-body">
-
                             <div ng-click="openModal(item.id)">
                               <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
                                 <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+
+                                <div class="imageLabel">
+                                  מרחק:
+                                  {{item.distance}}
+                                  &nbsp;|&nbsp;
+                                  {{item.subtitle}}
+                                </div>
+                                
                               </div>
                               <div dir="rtl">
                                 <p>{{item.longText}}</p>
                               </div>
                             </div>
-
-
-
                             <div>
                               <div class="button-bar">
                                 <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">{{item.likes}} Likes</a>
@@ -68,12 +71,18 @@
             <ion-tab title="בסביבה שלי" icon="ion-ios7-location-outline">
               <ion-content padding="true" class="has-header has-subheader">
 
-                 <div class="list card" ng-repeat="item in aroundMe" ng-init="postLiked=false">
+                 <div class="list card post" ng-repeat="item in aroundMe" ng-init="postLiked=false">
                         <div class="item item-divider" dir="rtl">{{item.title}}</div>
 
                         <div class="item item-body">
                            <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
                               <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+                              <div class="imageLabel">
+                                  מרחק:
+                                  {{item.distance}}
+                                  &nbsp;|&nbsp;
+                                  {{item.subtitle}}
+                                </div>
                             </div>
                             <div dir="rtl">
                               <p>{{item.longText}}</p>
@@ -83,7 +92,6 @@
                                 <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,aroundMe) : removeLike(item.id,aroundMe);postLiked=!postLiked">{{item.likes}} Likes</a>
                                 <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">{{item.comments.length}} Comments</a>
                               </div>
-
                               <div ng-show="showComments" class="list">
                                 <a ng-repeat="cmt in item.comments" class="item item-icon-left item-icon-right" href="#">
                                   <i class="icon">
@@ -99,47 +107,35 @@
                     </div>
               </ion-content>
             </ion-tab>
-
             <ion-tab title="חיפוש" icon="ion-ios7-search">
                 <ion-content padding="true" class="has-header">
 
-                  <div class="list list-inset">
-                    <label class="item item-input">
+                  <div class="list list-inset" dir="rtl">
+                    <label class="item item-input rtl">
                       <i class="icon ion-search placeholder-icon"></i>
-                      <input type="text" placeholder="Search">
+                      <input type="text" placeholder="">
                     </label>
                   </div>
 
                   <div class="list">
-
                     <label class="item item-input item-select">
                       <div class="input-label">
-                        איזור
+                        &nbsp;
                       </div>
-                      <select>
-                        <option>תל אביב</option>
-                        <option selected>חיפה</option>
-                        <option>ירושלים</option>
+                      <select ng-model="searchSelectedDestination">
+                        <option ng-repeat="dest in destinations" value="{{dest.id}}">{{dest.name}}</option>
                       </select>
                     </label>
-
-
                     <label class="item item-input item-select">
                       <div class="input-label">
-                        סוג
+                        &nbsp;
                       </div>
-                      <select>
-                        <option>מסעדות</option>
-                        <option selected>צימרים ומלונות</option>
-                        <option>ספא</option>
+                      <select ng-model="searchSelectedSearchType">
+                        <option ng-repeat="st in searchTypes" value="{{st.id}}">{{st.name}}</option>
                       </select>
                     </label>
-
                   </div>
-
-
                 </ion-content>
-
             </ion-tab>
 
             <ion-tab title="מבצעים" icon="ion-checkmark">
