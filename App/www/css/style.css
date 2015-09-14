@@ -19,13 +19,32 @@
 	height:180px;
 }
 
+.button{
+	border-color:#ececec;
+}
 
+.item{
+	border-width:0px;
+}
+
+.item-body{
+	padding-top: 2px;
+}
+
+.item-divider{
+	background-color:#fff;
+	border-width:0px;
+}
 
 .item-input.rtl{
     padding: 6px 16px 5px 0px;
 }
 .rtl input{
     padding-right:16px !important;
+}
+
+.item.postComment{
+	border-bottom: solid 1px #ececec;
 }
 
 .post .imageLabel{

@@ -45,21 +45,28 @@
                                 <p>{{item.longText}}</p>
                               </div>
                             </div>
-                            <div>
+                            <div style="margin-top:25px;">
                               <div class="button-bar">
-                                <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">{{item.likes}} Likes</a>
-                                <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">{{item.comments.length}} Comments</a>
+                                <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">
+                                  <i class="icon ion-android-checkmark" style="margin-right: 9px;"></i>
+                                  <span style="font-size:13px;">{{item.likes}} Likes</span>
+                                </a>
+                                <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">
+                                  <i class="icon ion-ios7-chatboxes" style="margin-right: 9px;"></i>
+                                  <span style="font-size:13px;">{{item.comments.length}} Comments</span>
+                                </a>
                               </div>
 
                               <div ng-show="showComments" class="list">
-                                <a ng-repeat="cmt in item.comments" class="item item-icon-left item-icon-right" href="#">
+                                <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left item-icon-right" href="#">
                                   <i class="icon">
                                     <img src="{{cmt.user.image}}" style="height:35px;" />
                                   </i>
-                                   <div>{{cmt.user.name}}</div>
+                                    <div>{{cmt.user.name}}</div>
                                     <div>{{cmt.title}}</div>
-                                  <i class="icon ion-happy" style="font-size:14px;">Like!</i>
+                                  <i class="icon ion-android-checkmark" style="font-size:14px;">Like!</i>
                                 </a>
+
                               </div>
                             </div>
                         </div>
