@@ -4,6 +4,17 @@
 }
 
 
+.tab-item{
+	color:#adb1b9;
+}
+.tab-item-active{
+    color: #568efd;
+}
+
+
+.tabs-stable > .tabs, .tabs.tabs-stable{
+	background-color: #fff;
+}
 
 .title-image{
 	height: 33px;

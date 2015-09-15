@@ -50,7 +50,7 @@
                             <div style="margin-top:25px;">
                               <div class="button-bar">
                                 <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">
-                                  <i class="icon ion-android-checkmark" style="margin-right: 9px;"></i>
+                                  <i class="icon ion-thumbsup" style="margin-right: 9px;"></i>
                                   <span style="font-size:13px;position: relative;top:2px;">{{item.likes}} Likes</span>
                                 </a>
                                 <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">
@@ -63,7 +63,7 @@
                               </div>
 
                               <div ng-show="showComments" class="list">
-                                <div class="list" style="padding-top: 0px;">
+                                <div class="list" style="padding-top: 0px;margin-bottom: 0px;">
                                   <div class="item item-input-inset" style="background:#E5E5E5;">
                                     
                                     <label class="item-input-wrapper" style="background:#fff;">
@@ -161,7 +161,7 @@
                 </ion-content>
             </ion-tab>
 
-            <ion-tab title="מבצעים" icon="ion-checkmark">
+            <ion-tab title="מבצעים" icon="ion-ios7-star-outline">
                 <ion-content padding="true" class="has-header"></ion-content>
             </ion-tab>
             <ion-tab title="מסעדות" icon="ion-fork">
