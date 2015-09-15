@@ -1,5 +1,6 @@
 .pane, .view{
 	background: #e3e9f9;
+	font-family: 'Arimo', arial;
 }
 
 
@@ -7,6 +8,14 @@
 .title-image{
 	height: 33px;
     margin-top: 5px;
+}
+
+.postTitleIcon
+{
+	margin-left: 5px;
+	margin-right: 5px;
+	font-size: 20px;
+	position: relative;top: 2px;
 }
 
 .imagePlaceHolder{
@@ -19,7 +28,38 @@
 	height:180px;
 }
 
-.button{
+
+.bar-header{
+	padding: 0px;
+}
+
+.bar-header .button{
+	padding:0px;
+	border: 0px;
+    top: 0px !important;
+    right: 0px !important;
+}
+.bar-header .button:before{
+	font-size:23px !important;
+}
+
+
+.comment-button{
+	font-size: 11px;
+    padding: 0px 6px;
+    line-height: normal;
+    height: 30px;
+    min-height: 30px;
+    margin-right: 0px;
+}
+
+.comment-button .icon:before, .comment-button.icon:before, .comment-button.icon-left:before, .comment-button.icon-right:before{
+	line-height: 11px;
+    font-size: 16px;
+}
+
+
+.button-bar .button{
 	border-color:#ececec;
 }
 
