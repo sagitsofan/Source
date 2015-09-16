@@ -1,5 +1,6 @@
-var ctrlApp = angular.module('app', ['ionic'])
-.run(function ($ionicPlatform) {
+var ctrlApp = angular.module('app', ['ionic','ngOpenFB'])
+.run(function ($ionicPlatform,ngFB) {
+    ngFB.init({appId: 1678978092322653});
 
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -13,20 +14,13 @@ var ctrlApp = angular.module('app', ['ionic'])
             StatusBar.overlaysWebView(true);
             StatusBar.style(2)
         }
-
-
-
-
     });
 })
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-    
+
     $ionicConfigProvider.tabs.style("standard");
     $ionicConfigProvider.tabs.position("bottom");
     $ionicConfigProvider.navBar.alignTitle("center");
-
-
-
 
     $stateProvider.state('tabs', {
         url: '/tabs',
