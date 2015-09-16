@@ -6,10 +6,6 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "com.ionicframework.itapp264853"
-        }
-    },
+    "installed_plugins": {},
     "dependent_plugins": {}
 }
