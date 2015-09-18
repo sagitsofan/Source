@@ -8,7 +8,7 @@
 		<ion-content>
 			<label class="item">
 				<button class="button button-block button-positive" ng-click="fbLogin()">
-					Login with Facebook 3
+					Login with Facebook
 				</button>
 			</label>
 			<div>
@@ -21,18 +21,22 @@
 			<h1 class="title">User is logged in</h1>
 		</ion-header-bar>
 		<ion-content>
-			        <div class="list card">
-			            <div class="item">
-			                <h2>{{user.facebook.name}}</h2>
-			                <p>{{user.facebook.city}}</p>
-			            </div>
-			            <div class="item item-body">
-			                <img src="http://graph.facebook.com/{{user.facebook.id}}/picture?width=270&height=270"/>
-			            </div>
-			        </div>
-			        <div>
+			<div class="list card">
+				<div class="item">
+					<h2>{{user.facebook.name}}</h2>
+					<p>{{user.facebook.city}}</p>
+				</div>
+				<div class="item item-body">
+					<img ng-src="http://graph.facebook.com/{{user.facebook.id}}/picture?width=270&height=270"/>
+				</div>
+			</div>
+			<div>
+				<button ng-click="fbLogout()" class="button">Logout</button>
+			</div>
+			<div>
 				<button ng-click="closeLoginModal()" class="button button-icon icon ion-ios7-close-outline"></button>
 			</div>
+
 		</ion-content>
 	</div>
 

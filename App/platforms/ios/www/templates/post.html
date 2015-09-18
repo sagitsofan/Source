@@ -1,0 +1,58 @@
+<div ng-click="openModal(item.id)" class="item item-divider" dir="rtl">
+  <i ng-show="item.icon != ''" ng-class="item.icon" class="icon postTitleIcon" style=""></i>
+  {{item.title}}
+</div>
+<div class="item item-body">
+    <div ng-click="openModal(item.id)">
+      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
+        <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        <div class="imageLabel">
+          מרחק:
+          {{item.distance}}
+          &nbsp;|&nbsp;
+          {{item.subtitle}}
+        </div>
+      </div>
+      <div dir="rtl">
+        <p>{{item.longText}}</p>
+      </div>
+    </div>
+    <div style="margin-top:25px;">
+      <div class="button-bar">
+        <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">
+          <i class="icon ion-thumbsup" style="margin-right: 9px;"></i>
+          <span style="font-size:13px;position: relative;top:2px;">{{item.likes}} Likes</span>
+        </a>
+        <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">
+          <i class="icon ion-ios7-chatboxes" style="margin-right: 9px;"></i>
+          <span style="font-size:13px;position: relative;top:2px;">
+            <span ng-show="item.comments.length > 0">{{item.comments.length}} Comments</span>
+            <span ng-show="item.comments.length == 0">?מה דעתך</span>
+          </span>
+        </a>
+      </div>
+
+      <div ng-show="showComments" class="list">
+        <div class="list" style="padding-top: 0px;margin-bottom: 0px;">
+          <div class="item item-input-inset" style="background:#E5E5E5;">
+            
+            <label class="item-input-wrapper" style="background:#fff;">
+              <input ng-model="userComment" type="text" placeholder="מה דעתך?" dir="rtl" style="width:100%;background:#fff;">
+            </label>
+            <button ng-click="sendComment(item.id,userComment)" class="button comment-button icon-left ion-android-send button-positive">send</button>
+          </div>
+        </div>
+
+
+        <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left item-icon-right" href="#">
+          <i class="icon">
+            <img src="{{cmt.user.image}}" style="height:35px;" />
+          </i>
+            <div>{{cmt.user.name}}</div>
+            <div>{{cmt.title}}</div>
+          <i class="icon ion-android-checkmark" style="font-size:14px;">Like!</i>
+        </a>
+
+      </div>
+    </div>
+</div>

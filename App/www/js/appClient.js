@@ -1,5 +1,5 @@
-var ctrlApp = angular.module('app', ['ionic','ngOpenFB'])
-.run(function ($ionicPlatform,ngFB) {
+var ctrlApp = angular.module('app', ['ionic', 'ionic.utils', 'ngOpenFB'])
+.run(function ($ionicPlatform, $localstorage, ngFB) {
     ngFB.init({
         appId: 1678978092322653,
     });
@@ -31,3 +31,22 @@ var ctrlApp = angular.module('app', ['ionic','ngOpenFB'])
     
     $urlRouterProvider.otherwise('/tabs');
 });
+
+
+angular.module('ionic.utils', [])
+.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    }
+  }
+}]);

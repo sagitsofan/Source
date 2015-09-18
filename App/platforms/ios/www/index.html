@@ -45,7 +45,7 @@
                 </h1>
                 <button class="button button-icon" style="height:43px;" ng-click="openLoginModal()">
                     <img ng-hide="user.facebook.id &gt; 0" style="height:43px;" src="http://www.wsulaw.edu/images/staff/no-user.png">
-                    <img ng-show="user.facebook.id &gt; 0" style="height:43px;" src="http://graph.facebook.com/{{user.facebook.id}}/picture?width=270&amp;height=270">
+                    <img ng-show="user.facebook.id &gt; 0" style="height:43px;" ng-src="http://graph.facebook.com/{{user.facebook.id}}/picture?width=270&amp;height=270">
                 </button>
             </ion-header-bar>
             <ion-nav-view></ion-nav-view>
