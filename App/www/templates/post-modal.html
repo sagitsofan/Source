@@ -4,7 +4,7 @@
         <button ng-click="closeModal()" class="button button-icon icon ion-ios7-close-outline"></button>
     </ion-header-bar>
     <ion-content>
-        <div class="imagePlaceHolder" style="background-image:url('{{postItem.image}}')">
+      <div class="imagePlaceHolder" style="background-image:url('{{postItem.image}}')">
         <i ng-hide="postItem.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         <div class="imageLabel" dir="rtl">
           מרחק:
@@ -15,33 +15,34 @@
             <i class="icon ion-loading-c"></i>
           </span>
         </div>
-
-        <div class="list card" style="text-align:right;">
-				  <a ng-show="hasValue(postItem.phone)" href="tel:{{postItem.phone}}" class="item item-icon-right">
-				    {{postItem.phone}}
-				    <i class="icon ion-ios7-telephone-outline"></i>
-				  </a>
-
-				  <a href="waze://?ll={{postItem.location.lat}},{{postItem.location.lon}}&navigate=yes" class="item item-icon-right">
-				    <i class="icon ion-ios7-location-outline"></i>
-				    Waze
-				    צא לדרך עם 
-				  </a>
-
-				  <a ng-click="navigateTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
-				    <i class="icon ion-ios7-location-outline"></i>
-				    {{postItem.address}}
-				  </a>
-
-				  <a ng-click="share(postItem.id)" class="item item-icon-right">
-				    <i class="icon ion-share"></i>
-				    Share
-				  </a>
-
-				</div>
-
-
-
       </div>
+      <div dir="rtl">
+      	{{postItem.longText}}
+      </div>
+      <div class="list card" style="text-align:right;">
+			  <a ng-show="hasValue(postItem.phone)" href="tel:{{postItem.phone}}" class="item item-icon-right">
+			    {{postItem.phone}}
+			    <i class="icon ion-ios7-telephone-outline"></i>
+			  </a>
+
+			  <a href="waze://?ll={{postItem.location.lat}},{{postItem.location.lon}}&navigate=yes" class="item item-icon-right">
+			    <i class="icon ion-ios7-location-outline"></i>
+			    Waze
+			    צא לדרך עם 
+			  </a>
+
+			  <a ng-click="navigateTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
+			    <i class="icon ion-ios7-location-outline"></i>
+			    {{postItem.address}}
+			  </a>
+
+			  <a ng-click="share(postItem.id)" class="item item-icon-right">
+			    <i class="icon ion-share"></i>
+			    Share
+			  </a>
+			</div>
+      <div>
+    		<ion-gallery ng-if="postItem.images.length > 0" ion-gallery-items="postItem.images"></ion-galllery>
+    	</div>
     </ion-content>
 </ion-modal-view>

@@ -281,12 +281,25 @@ ctrlApp
     $scope.getItem = function (id) {
         for (i = 0; i < $scope.items.length; i++) {
             if ($scope.items[i].id == id) {
+                console.log(id);
                 return $scope.items[i];
             }
         }
     }
 
+    $scope.getImagesFormat = function(){
+      var ret = [];
+      if (typeof arr == "undefined"){
+        return ret;
+      }
+      for (i = 0; i < $scope.postItem.images.length; i++) {
+        ret.push({
+          "src":$scope.postItem.images[i]
+        });
+      }
 
+      return ret;
+    }
 
     //dev data
     //----------------------

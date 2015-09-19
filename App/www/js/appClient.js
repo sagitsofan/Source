@@ -1,4 +1,4 @@
-var ctrlApp = angular.module('app', ['ionic', 'ionic.utils', 'ngOpenFB'])
+var ctrlApp = angular.module('app', ['ionic', 'ionic.utils', 'ngOpenFB','ion-gallery'])
 .run(function ($ionicPlatform, $localstorage, ngFB) {
     ngFB.init({
         appId: 1678978092322653,

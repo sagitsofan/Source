@@ -36,7 +36,7 @@
 	width: 100%;
 	background-color: rgb(255, 255, 255);
 	background-size: cover;
-	height:180px;
+	min-height:300px;
 }
 
 
@@ -52,6 +52,10 @@
 }
 .bar-header .button:before{
 	font-size:23px !important;
+}
+
+.bar-subheader{
+    background-color: rgba(255,255,255,0.8);
 }
 
 
@@ -99,9 +103,8 @@
 }
 
 .imageLabel{
-
-	margin-top: 144px;
-    font-size: 12px;
+	margin-top: 314px;
+    font-size: 14px;
     text-align: right;
     padding: 10px 10px 5px 10px;
     color: #fff;
@@ -115,3 +118,4 @@ background: linear-gradient(to bottom,  rgba(0,0,0,0) 0%,rgba(0,0,0,0) 9%,rgba(0
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#cc000000',GradientType=0 ); /* IE6-9 */
 
 }
+

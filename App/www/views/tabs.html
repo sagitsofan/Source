@@ -2,32 +2,8 @@
 
     <ion-view title="Biluy">
 
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==4">
-          <h2 class="title">
-            <div ng-click="getPhoto()">
-              <i class="icon ion-ios7-camera"></i>
-              Photo
-            </div>
-          </h2>
-        </div>
-
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==3">
-          <h2 class="title">
-            <div ng-show="user.location.name.length > 0">
-              <i class="icon ion-ios7-location-outline"></i>
-              {{user.location.name}}
-            </div>
-            <div ng-hide="user.location.name.length > 0">
-              <i class="icon ion-loading-c"></i>
-            </div>
-          </h2>
-        </div>
-
+        
         <ion-tabs class="tabs-stable tabs-icon-top">
-            
-
-
-
             <ion-tab title="מבצעים" icon="ion-ios7-star-outline">
                 <ion-content padding="true" class="has-header"></ion-content>
             </ion-tab>
@@ -87,15 +63,10 @@
 
             <ion-tab title="לאן היום" icon="ion-ios7-paperplane-outline">
                 <ion-content padding="false" class="has-header">
-                    <br />
-                    <br />
                     <div class="list card post" ng-repeat="item in feed" ng-init="postLiked=false">
                         <post></post>
                     </div>
                 </ion-content>
             </ion-tab>
-
-
         </ion-tabs>
-
     </ion-view>
