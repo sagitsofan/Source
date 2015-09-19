@@ -24,17 +24,51 @@ ctrlApp
     }])
 
 
+
+
+
 ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) {
         var data = {};
-        var baseUrl = "http://localhost:1337/api";
-        
-        data.getFeed = function (schema) {
-            return $http.get(baseUrl + '/feed');
+        var schemaPosts = "feed";
+        var baseUrl = "http://imsandbox.cloudapp.net/api";
+
+        data.getFeed = function () {
+            return $http.get(baseUrl + '/' + schemaPosts);
         }
         
-        data.getAroundMe = function (schema) {
-            return $http.get(baseUrl + '/feed');
+        data.getAroundMe = function () {
+            return $http.get(baseUrl + '/' + schemaPosts);
         }
+
+        // data.addComment = function(postId, userId, userFullName, commentText){
+        //   var data = {
+        //     "userId": userId,
+        //     "userFullName": userFullName,
+        //     "title": commentText
+        //   };
+
+        //   return $http.post(baseUrl + '/update/' + schemaPosts + '/' + postId, {
+        //     data: data
+        //   });
+
+        // }
+
+        // data.updateRowData = function (schema, id, data) {
+        //     return $http.post(baseUrl + '/update/' + schema + '/' + id, {
+        //         data: data
+        //     });
+        // }
+        
+        // data.deleteRowData = function (schema, id) {
+        //     return $http.post(baseUrl + '/delete/' + schema + '/' + id);
+        // }
+        
+        // data.addRowData = function (schema, data) {
+        //     console.log("about to add");
+        //     return $http.post(baseUrl + '/add/' + schema + '/', { data });
+        // }
+
+
 
         return data;
     }]);

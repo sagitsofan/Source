@@ -1,11 +1,8 @@
 var ctrlApp = angular.module('app', ['ionic', 'ionic.utils', 'ngOpenFB'])
 .run(function ($ionicPlatform, $localstorage, ngFB) {
     ngFB.init({
-        appId: '1678978092322653',
+        appId: 1678978092322653,
     });
-
- 
-      
 
     $ionicPlatform.ready(function () {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -53,8 +50,3 @@ angular.module('ionic.utils', [])
     }
   }
 }]);
-
-
-
-
-

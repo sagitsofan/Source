@@ -6,9 +6,14 @@
     <div ng-click="openModal(item.id)">
       <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
         <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-        <div class="imageLabel">
+        <div class="imageLabel" dir="rtl">
           מרחק:
-          {{item.distance}}
+          <span ng-hide="user.location == null">
+            {{calcDistanceFromUser(item.location.lat,item.location.lon)}}
+          </span>
+          <span ng-show="user.location == null">
+            <i class="icon ion-loading-c"></i>
+          </span>
           &nbsp;|&nbsp;
           {{item.subtitle}}
         </div>
@@ -44,13 +49,12 @@
         </div>
 
 
-        <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left item-icon-right" href="#">
-          <i class="icon">
-            <img src="{{cmt.user.image}}" style="height:35px;" />
+        <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left" href="#">
+          <i class="icon" ng-show="cmt.userId">
+            <img ng-src="{{getFacebookImage(cmt.userId)}}" style="height:35px;" />
           </i>
-            <div>{{cmt.user.name}}</div>
-            <div>{{cmt.title}}</div>
-          <i class="icon ion-android-checkmark" style="font-size:14px;">Like!</i>
+          <div style="font-size:13px;font-weight:bold">{{cmt.userFullName}}</div>
+          <div dir="rtl" style="font-size:15px;">{{cmt.title}}</div>
         </a>
 
       </div>

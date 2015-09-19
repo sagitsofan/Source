@@ -1,4 +1,4 @@
-﻿  
+  
 
     <ion-view title="Biluy">
 
@@ -43,7 +43,7 @@
                   <div class="list list-inset" dir="rtl">
                     <label class="item item-input rtl">
                       <i class="icon ion-search placeholder-icon"></i>
-                      <input type="text" placeholder="">
+                      <input type="text" placeholder="" ng-keydown="search(searchQ)" ng-model="searchQ">
                     </label>
                   </div>
 
@@ -65,6 +65,15 @@
                       </select>
                     </label>
                   </div>
+
+
+                  <div class="list card post" ng-repeat="item in search(searchQ)" ng-init="postLiked=false">
+                    <post />
+                  </div>
+
+
+
+
                 </ion-content>
             </ion-tab>
 
