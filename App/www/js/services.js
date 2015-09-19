@@ -29,15 +29,10 @@ ctrlApp
 
 ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) {
         var data = {};
-        var schemaPosts = "feed";
         var baseUrl = "http://imsandbox.cloudapp.net/api";
 
-        data.getFeed = function () {
-            return $http.get(baseUrl + '/' + schemaPosts);
-        }
-        
-        data.getAroundMe = function () {
-            return $http.get(baseUrl + '/' + schemaPosts);
+        data.getItems = function () {
+            return $http.get(baseUrl + '/feed');
         }
 
         // data.addComment = function(postId, userId, userFullName, commentText){

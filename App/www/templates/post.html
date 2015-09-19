@@ -24,7 +24,7 @@
     </div>
     <div style="margin-top:25px;">
       <div class="button-bar">
-        <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id,feed) : removeLike(item.id,feed);postLiked=!postLiked">
+        <a class="button" ng-class="{'button-positive':postLiked}" ng-click="(!postLiked) ? userLike(item.id) : removeLike(item.id);postLiked=!postLiked">
           <i class="icon ion-thumbsup" style="margin-right: 9px;"></i>
           <span style="font-size:13px;position: relative;top:2px;">{{item.likes}} Likes</span>
         </a>

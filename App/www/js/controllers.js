@@ -5,17 +5,28 @@ ctrlApp
   };
 })
 .controller('AppCtrl', function ($scope, $timeout, $interval, $ionicTabsDelegate, $ionicModal, Camera, DataLayer, ngFB, $localstorage) {
-    
+    $scope.items = [];
+
     function logger() {
-        console.log(arguments);
+      //console.log(new Date().getTime(),$scope.user)
+      console.log(arguments);
     }
 
-    $scope.calcDistanceFromUser = function(lat,lon){
+    $scope.calcDistanceFromUser = function(lat,lon,shouldAddFormat){
+      if (typeof shouldAddFormat === "undefined"){
+        shouldAddFormat = true;
+      }
+
       if ($scope.user.location == null){
         return null;
       }
 
       var meters = calcDistance($scope.user.location.lat, $scope.user.location.lng, lat, lon);
+
+      if (!shouldAddFormat){
+        return Math.round(meters);
+      }
+
       if (meters < 1000){
           return Math.round(meters) + " " + "מטר";
       } else {
@@ -111,6 +122,7 @@ ctrlApp
                         logger("translte lat-lng to address", results[1].formatted_address);
                         //set user address
                         $scope.user.location.name = results[1].formatted_address;
+                        $scope.aroundMe = $scope.getAroundMe();
                         $scope.$apply();
                     } else {
                         logger('No results found');
@@ -169,6 +181,7 @@ ctrlApp
                       logger(JSON.stringify(user));
 
                       $localstorage.setObject('facebookUser', user);
+                      $scope.user.name = user.name;
                       $scope.user.facebook = user;
                       $scope.signUpUser();
                       $scope.closeLoginModal();
@@ -215,7 +228,7 @@ ctrlApp
 
     $scope.postItem = null;
     $scope.openModal = function (itemId) {
-        $scope.postItem = $scope.getItem(itemId,$scope.feed);
+        $scope.postItem = $scope.getItem(itemId);
         $scope.modal.show();
     };
     $scope.closeModal = function () {
@@ -234,25 +247,6 @@ ctrlApp
     $scope.$on('modal.removed', function () {
         // Execute action
     });
-    
-    $scope.user = {
-        isLoggedIn:false,
-        id: "123342",
-        name: "Stav Mizrahi",
-        location: null,
-    }
-    
-    DataLayer.getFeed().then(function (results) {
-      $scope.feed = results.data;
-    },function(){
-      //onerror
-    });
-
-    DataLayer.getAroundMe().then(function (results) {
-      $scope.aroundMe = results.data;
-    },function(){
-        //onerror
-    });
 
 
 
@@ -268,26 +262,26 @@ ctrlApp
     //     logger(postId, commentText);
     // }
 
-    $scope.userLike = function (id, collection) {
-        for (i = 0; i < collection.length; i++) {
-            if (collection[i].id == id) {
-                collection[i].likes = collection[i].likes + 1;
+    $scope.userLike = function (id) {
+        for (i = 0; i < $scope.items.length; i++) {
+            if ($scope.items[i].id == id) {
+                $scope.items[i].likes = $scope.items[i].likes + 1;
             }
         }
     }
     
-    $scope.removeLike = function (id, collection) {
-        for (i = 0; i < collection.length; i++) {
-            if (collection[i].id == id) {
-                collection[i].likes = collection[i].likes - 1;
+    $scope.removeLike = function (id) {
+        for (i = 0; i < $scope.items.length; i++) {
+            if ($scope.items[i].id == id) {
+                $scope.items[i].likes = $scope.items[i].likes - 1;
             }
         }
     }
 
-    $scope.getItem = function (id, collection) {
-        for (i = 0; i < collection.length; i++) {
-            if (collection[i].id == id) {
-                return collection[i];
+    $scope.getItem = function (id) {
+        for (i = 0; i < $scope.items.length; i++) {
+            if ($scope.items[i].id == id) {
+                return $scope.items[i];
             }
         }
     }
@@ -373,21 +367,55 @@ ctrlApp
           return true;
         }
 
-
       });
-
-
-
-
-
       return ret;
+    }
+
+
+    $scope.getFeed = function(){
+      return $scope.items;
+    }
+
+
+    $scope.getAroundMe = function(){
+      var searchRadius = 10000;
+      var ret = [];
+
+      _.each($scope.items, function(item, i){
+        var itemDistance = $scope.calcDistanceFromUser(item.location.lat,item.location.lon,false);
+        if (itemDistance != null && itemDistance < searchRadius){
+          ret.push(item);
+        }
+      });
+      logger("find around me:",ret)
+      return ret;
+    }
+
+    $scope.updateItems = function(){
+      DataLayer.getItems().then(function (results) {
+          $scope.items = results.data;
+
+          $scope.feed = $scope.getFeed();
+          $scope.aroundMe = $scope.getAroundMe();
+
+          //do something with the data
+        },function(){
+          //onerror
+        });
     }
 
     $scope.init = function(){
       logger("init");
-      logger("updateUserPosition",$scope.user);
-      $scope.updateUserPosition();
 
+      $scope.user = {
+          isLoggedIn:false,
+          id: null,
+          name: null,
+          location: null,
+      }
+      $scope.updateUserPosition();
+      logger("updateUserPosition",$scope.user);
+      $scope.updateItems();
 
       //add data      
       // var addData = {
@@ -406,19 +434,22 @@ ctrlApp
       $timeout(function () {
         if ($localstorage.getObject('facebookUser').id != undefined){
           $scope.user.facebook = $localstorage.getObject('facebookUser')
+          $scope.user.name = $scope.user.facebook.name;
           $scope.user.isLoggedIn = true;
         } else {
           $scope.openLoginModal();
         }
-        $scope.selectTabWithIndex(2);
+        $scope.selectTabWithIndex(4);
 
       }, 100);
 
       $interval(function () {
-        logger("updateUserPosition",$scope.user);
         $scope.updateUserPosition();
-      }, 10000);
+        logger("updateUserPosition",$scope.user);
 
+        //$scope.updateItems();
+
+      }, 15000);
 
     };
     $scope.init();
