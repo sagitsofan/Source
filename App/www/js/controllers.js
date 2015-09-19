@@ -4,7 +4,7 @@ ctrlApp
     templateUrl: 'templates/post.html'
   };
 })
-.controller('AppCtrl', function ($scope, $timeout, $interval, $ionicTabsDelegate, $ionicModal, Camera, DataLayer, ngFB, $localstorage) {
+.controller('AppCtrl', function ($scope, $window, $timeout, $interval, $ionicTabsDelegate, $ionicModal, Camera, DataLayer, ngFB, $localstorage) {
     $scope.items = [];
 
     function logger() {
@@ -286,6 +286,11 @@ ctrlApp
             }
         }
     }
+    $scope.getPostImageHeigt = function(){
+      return 300;
+      //return $window.innerHeight*0.45;
+    }
+
 
     $scope.getImagesFormat = function(){
       var ret = [];

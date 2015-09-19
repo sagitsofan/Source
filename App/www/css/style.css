@@ -36,7 +36,6 @@
 	width: 100%;
 	background-color: rgb(255, 255, 255);
 	background-size: cover;
-	min-height:300px;
 }
 
 
@@ -103,8 +102,8 @@
 }
 
 .imageLabel{
-	margin-top: 314px;
-    font-size: 14px;
+	margin-top: 263px;
+    font-size: 12px;
     text-align: right;
     padding: 10px 10px 5px 10px;
     color: #fff;

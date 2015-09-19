@@ -4,7 +4,7 @@
 </div>
 <div class="item item-body">
     <div ng-click="openModal(item.id)">
-      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
+      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}');height:{{getPostImageHeigt()}}px;">
         <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         <div class="imageLabel" dir="rtl">
           מרחק:
@@ -17,7 +17,7 @@
           &nbsp;|&nbsp;
           {{item.teaser}}
         </div>
-        
+
       </div>
       <div dir="rtl">
         <p>{{item.subtitle}}</p>
