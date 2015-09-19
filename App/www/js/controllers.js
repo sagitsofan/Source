@@ -252,15 +252,15 @@ ctrlApp
 
 
 
-    // $scope.sendComment = function(postId, commentText){
-    //     DataLayer.addComment(postId, $scope.user.facebook.id, $scope.user.name, commentText).then(function (results) {
-    //       console.log(results);
-    //     },function(){
-    //       //onerror
-    //       console.log("kaki");
-    //     });
-    //     logger(postId, commentText);
-    // }
+    $scope.sendComment = function(postId, commentText,item){
+      DataLayer.addComment(item, $scope.user.facebook.id, $scope.user.name, commentText).then(function (results) {
+        console.log(results);
+      },function(){
+        //onerror
+        console.log("kaki");
+      });
+      logger(postId, commentText);
+    }
 
     $scope.userLike = function (id) {
         for (i = 0; i < $scope.items.length; i++) {
@@ -435,6 +435,19 @@ ctrlApp
       logger("updateUserPosition",$scope.user);
       $scope.updateItems();
 
+
+      $timeout(function () {
+        if ($localstorage.getObject('facebookUser').id != undefined){
+          $scope.user.facebook = $localstorage.getObject('facebookUser')
+          $scope.user.name = $scope.user.facebook.name;
+          $scope.user.isLoggedIn = true;
+        } else {
+          $scope.openLoginModal();
+        }
+        $scope.selectTabWithIndex(2);
+
+
+
       //add data      
       // var addData = {
       //   "x":"y"
@@ -449,15 +462,6 @@ ctrlApp
       // });
 
 
-      $timeout(function () {
-        if ($localstorage.getObject('facebookUser').id != undefined){
-          $scope.user.facebook = $localstorage.getObject('facebookUser')
-          $scope.user.name = $scope.user.facebook.name;
-          $scope.user.isLoggedIn = true;
-        } else {
-          $scope.openLoginModal();
-        }
-        $scope.selectTabWithIndex(4);
 
       }, 100);
 

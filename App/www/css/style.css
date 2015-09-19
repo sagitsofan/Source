@@ -1,6 +1,16 @@
+body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+	font-family: arial !important;
+}
+
+
+
 .pane, .view{
 	background: #e3e9f9;
 	font-family: 'Arimo', arial;
+}
+
+.tab-content{
+	margin-top:80px;
 }
 
 

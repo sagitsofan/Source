@@ -4,6 +4,7 @@
         <button ng-click="closeModal()" class="button button-icon icon ion-ios7-close-outline"></button>
     </ion-header-bar>
     <ion-content>
+    <div style="font-family:arial">
       <div class="imagePlaceHolder" style="background-image:url('{{postItem.image}}')">
         <i ng-hide="postItem.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         <div class="imageLabel" dir="rtl">
@@ -44,5 +45,6 @@
       <div>
     		<ion-gallery ng-if="postItem.images.length > 0" ion-gallery-items="postItem.images"></ion-galllery>
     	</div>
+    </div>
     </ion-content>
 </ion-modal-view>
