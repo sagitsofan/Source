@@ -286,9 +286,8 @@ ctrlApp
             }
         }
     }
-    $scope.getPostImageHeigt = function(){
-      return 300;
-      //return $window.innerHeight*0.45;
+    $scope.getWindowHeight = function(){
+      return $window.innerHeight;
     }
 
 

@@ -30,38 +30,44 @@ ctrlApp
 ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) {
         var data = {};
         var baseUrl = "http://imsandbox.cloudapp.net/api";
+        var schemaPosts = "feed";
 
         data.getItems = function () {
-            return $http.get(baseUrl + '/feed');
+            return $http.get(baseUrl + '/' + schemaPosts);
         }
 
-        // data.addComment = function(postId, userId, userFullName, commentText){
-        //   var data = {
-        //     "userId": userId,
-        //     "userFullName": userFullName,
-        //     "title": commentText
-        //   };
+        data.addComment = function(item, userId, userFullName, commentText){
 
-        //   return $http.post(baseUrl + '/update/' + schemaPosts + '/' + postId, {
-        //     data: data
-        //   });
+          
+          var comment = {
+            "userId": userId,
+            "userFullName": userFullName,
+            "title": commentText
+          };
 
-        // }
+          var data = item;
+          data.comments.push(comment);
 
-        // data.updateRowData = function (schema, id, data) {
-        //     return $http.post(baseUrl + '/update/' + schema + '/' + id, {
-        //         data: data
-        //     });
-        // }
+          return $http.post(baseUrl + '/update/' + schemaPosts + '/' + item._id + '/', {
+            data: data
+          });
+
+        }
+
+        data.updateRowData = function (schema, id, data) {
+            return $http.post(baseUrl + '/update/' + schema + '/' + id, {
+                data: data
+            });
+        }
         
-        // data.deleteRowData = function (schema, id) {
-        //     return $http.post(baseUrl + '/delete/' + schema + '/' + id);
-        // }
+        data.deleteRowData = function (schema, id) {
+            return $http.post(baseUrl + '/delete/' + schema + '/' + id);
+        }
         
-        // data.addRowData = function (schema, data) {
-        //     console.log("about to add");
-        //     return $http.post(baseUrl + '/add/' + schema + '/', { data });
-        // }
+        data.addRowData = function (schema, data) {
+            return $http.post(baseUrl + '/add/' + schema + '/', { data });
+
+        }
 
 
 
