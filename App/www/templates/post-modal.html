@@ -5,17 +5,7 @@
     </ion-header-bar>
     <ion-content>
     <div style="font-family:arial">
-      <div class="imagePlaceHolder" style="background-image:url('{{postItem.image}}')">
-        <i ng-hide="postItem.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-        <div class="imageLabel" dir="rtl">
-          מרחק:
-          <span ng-hide="user.location == null">
-            {{calcDistanceFromUser(postItem.location.lat,postItem.location.lon)}}
-          </span>
-          <span ng-show="user.location == null">
-            <i class="icon ion-loading-c"></i>
-          </span>
-        </div>
+      
       </div>
       <div dir="rtl">
       	{{postItem.longText}}
@@ -25,18 +15,15 @@
 			    {{postItem.phone}}
 			    <i class="icon ion-ios7-telephone-outline"></i>
 			  </a>
-
 			  <a href="waze://?ll={{postItem.location.lat}},{{postItem.location.lon}}&navigate=yes" class="item item-icon-right">
 			    <i class="icon ion-ios7-location-outline"></i>
 			    Waze
 			    צא לדרך עם 
 			  </a>
-
 			  <a ng-click="navigateTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
 			    <i class="icon ion-ios7-location-outline"></i>
 			    {{postItem.address}}
 			  </a>
-
 			  <a ng-click="share(postItem.id)" class="item item-icon-right">
 			    <i class="icon ion-share"></i>
 			    Share

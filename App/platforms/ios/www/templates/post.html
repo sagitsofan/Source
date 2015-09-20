@@ -4,7 +4,7 @@
 </div>
 <div class="item item-body">
     <div ng-click="openModal(item.id)">
-      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}')">
+      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}');height:{{getPostImageHeigt()}}px;">
         <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         <div class="imageLabel" dir="rtl">
           מרחק:
@@ -17,6 +17,7 @@
           &nbsp;|&nbsp;
           {{item.teaser}}
         </div>
+
       </div>
       <div dir="rtl">
         <p>{{item.subtitle}}</p>
@@ -44,7 +45,7 @@
             <label class="item-input-wrapper" style="background:#fff;">
               <input ng-model="userComment" type="text" placeholder="מה דעתך?" dir="rtl" style="width:100%;background:#fff;">
             </label>
-            <button ng-click="sendComment(item.id,userComment)" class="button comment-button icon-left ion-android-send button-positive">send</button>
+            <button ng-click="sendComment(item.id,userComment,item)" class="button comment-button icon-left ion-android-send button-positive">send</button>
           </div>
         </div>
 
