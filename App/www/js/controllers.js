@@ -6,6 +6,7 @@ ctrlApp
 })
 .controller('AppCtrl', function ($scope, $window, $timeout, $interval, $ionicTabsDelegate, $ionicModal, Camera, DataLayer, ngFB, $localstorage) {
     $scope.items = [];
+    $scope.fakeLocation = false;
 
     function logger() {
       //console.log(new Date().getTime(),$scope.user)
@@ -112,6 +113,15 @@ ctrlApp
                     lng: parseFloat(position.coords.longitude)
                 }
             };
+
+            if ($scope.fakeLocation){
+              geoLatLng = {
+                location: {
+                    lat: parseFloat("31.915285"),
+                    lng: parseFloat("34.775250")
+                }
+              };
+            }
             
             // set user location
             $scope.user.location = geoLatLng.location;
@@ -131,6 +141,8 @@ ctrlApp
                     logger('Geocoder failed due to: ' + status);
                 }
             });
+
+
         });
     };
     
@@ -395,7 +407,7 @@ ctrlApp
 
 
     $scope.getAroundMe = function(){
-      var searchRadius = 10000;
+      var searchRadius = 30000;
       var ret = [];
 
       _.each($scope.items, function(item, i){
@@ -411,11 +423,8 @@ ctrlApp
     $scope.updateItems = function(){
       DataLayer.getItems().then(function (results) {
           $scope.items = results.data;
-
           $scope.feed = $scope.getFeed();
           $scope.aroundMe = $scope.getAroundMe();
-
-          //do something with the data
         },function(){
           //onerror
         });

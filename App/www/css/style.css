@@ -64,7 +64,9 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .bar-subheader{
-    background-color: rgba(255,255,255,0.8);
+    background-color: rgba(255,255,255,0.94);
+    padding: 0px;
+    height: 35px;
 }
 
 

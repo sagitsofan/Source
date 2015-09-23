@@ -41,7 +41,7 @@
     <div>
       <div>
         <ion-header-bar>
-          <button class="button button-icon icon ion-android-settings" style="color:#c1c1c1;margin-left:10px;"></button>
+          <button class="button button-icon icon ion-android-settings" style="color:#c1c1c1;margin-left:10px;" ng-click="fakeLocation = !fakeLocation "></button>
           <h1 class="title">
             <img class="title-image" src="https://cdn4.iconfinder.com/data/icons/flat-icon-set/2133/flat_icons-graficheria.it-13.png">
           </h1>
@@ -51,26 +51,18 @@
           </button>
         </ion-header-bar>
         
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==4">
-          <h2 class="title">
-            <div ng-click="getPhoto()">
-              <i class="icon ion-ios7-camera"></i>
-              Photo
+        <div class="bar bar-subheader" ng-show="getCurrentTabIndex() > 2">
+            <div class="button-bar">
+              <button style="text-align:left;" ng-click="getPhoto()" class="button button-outline icon-left ion-ios7-camera button-positive">&nbsp; Take Picture</button>
+              <button class="button button-outline icon-left button-positive" ng-class="{true:'ion-ios7-location-outline', false:''}[user.location.name.length > 0]">
+                  {{user.location.name}}
+                  <span ng-hide="user.location.name.length > 0" style="color:red;" dir="rtl">
+                    מחפש מיקום...
+                  </span>
+              </button>
             </div>
-          </h2>
         </div>
 
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==3">
-          <h2 class="title">
-            <div ng-show="user.location.name.length &gt; 0">
-              <i class="icon ion-ios7-location-outline"></i>
-              {{user.location.name}}
-            </div>
-            <div ng-hide="user.location.name.length &gt; 0">
-              <i class="icon ion-loading-c"></i>
-            </div>
-          </h2>
-        </div>
 
 
         <ion-nav-view></ion-nav-view>
