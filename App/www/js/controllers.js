@@ -136,7 +136,7 @@ ctrlApp
     
     
     $scope.selectTabWithIndex = function (index) {
-        //$ionicTabsDelegate.$getByHandle('myTabs').select(index);
+        $ionicTabsDelegate.$getByHandle('mainTabs').select(index);
         $ionicTabsDelegate.select(index);
     };
     
@@ -443,26 +443,10 @@ ctrlApp
         } else {
           $scope.openLoginModal();
         }
-        $scope.selectTabWithIndex(2);
 
+        $scope.selectTabWithIndex(4);
 
-
-      //add data      
-      // var addData = {
-      //   "x":"y"
-      // }
-
-      // DataLayer.addRowData("feed", addData).then(function (results) {
-      //   //console.log(results);
-      //   console.log("yes!");
-      // },function(){
-      // //onerror
-      //   console.log("kaki");
-      // });
-
-
-
-      }, 100);
+      }, 1000);
 
       $interval(function () {
         $scope.updateUserPosition();

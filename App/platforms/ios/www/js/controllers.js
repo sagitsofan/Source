@@ -136,7 +136,7 @@ ctrlApp
     
     
     $scope.selectTabWithIndex = function (index) {
-        //$ionicTabsDelegate.$getByHandle('myTabs').select(index);
+        $ionicTabsDelegate.$getByHandle('mainTabs').select(index);
         $ionicTabsDelegate.select(index);
     };
     
@@ -443,7 +443,8 @@ ctrlApp
         } else {
           $scope.openLoginModal();
         }
-        $scope.selectTabWithIndex(2);
+
+        $scope.selectTabWithIndex(4);
 
 
 
@@ -462,7 +463,7 @@ ctrlApp
 
 
 
-      }, 100);
+      }, 1000);
 
       $interval(function () {
         $scope.updateUserPosition();

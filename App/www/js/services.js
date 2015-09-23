@@ -65,8 +65,7 @@ ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) 
         }
         
         data.addRowData = function (schema, data) {
-            return $http.post(baseUrl + '/add/' + schema + '/', { data });
-
+            //return $http.post(baseUrl + '/add/' + schema + '/', { data });
         }
 
 
