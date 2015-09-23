@@ -37,7 +37,7 @@
     <script src="js/services.js"></script>
 
 </head>
-<body ng-app="app" ng-controller="AppCtrl" animation="slide-left-right-ios7" class="platform-ios platform-cordova platform-webview">
+<body ng-app="app" ng-cloak="" ng-controller="AppCtrl" animation="slide-left-right-ios7" class="platform-ios platform-cordova platform-webview">
     <div>
       <div>
         <ion-header-bar>
@@ -62,11 +62,11 @@
 
         <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==3">
           <h2 class="title">
-            <div ng-show="user.location.name.length > 0">
+            <div ng-show="user.location.name.length &gt; 0">
               <i class="icon ion-ios7-location-outline"></i>
               {{user.location.name}}
             </div>
-            <div ng-hide="user.location.name.length > 0">
+            <div ng-hide="user.location.name.length &gt; 0">
               <i class="icon ion-loading-c"></i>
             </div>
           </h2>

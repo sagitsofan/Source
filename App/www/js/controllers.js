@@ -452,7 +452,7 @@ ctrlApp
         $scope.updateUserPosition();
         logger("updateUserPosition",$scope.user);
 
-        //$scope.updateItems();
+        $scope.updateItems();
 
       }, 15000);
 

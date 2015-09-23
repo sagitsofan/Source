@@ -1,0 +1,37 @@
+<ion-modal-view style="background-color: rgba(255,255,255,0.95);">
+    <ion-header-bar>
+        <h1 class="title">{{postItem.title}}</h1>
+        <button ng-click="closeModal()" class="button button-icon icon ion-ios7-close-outline"></button>
+    </ion-header-bar>
+    <ion-content>
+    <div style="font-family:arial">
+      
+      </div>
+      <div dir="rtl">
+      	{{postItem.longText}}
+      </div>
+      <div class="list card" style="text-align:right;">
+			  <a ng-show="hasValue(postItem.phone)" href="tel:{{postItem.phone}}" class="item item-icon-right">
+			    {{postItem.phone}}
+			    <i class="icon ion-ios7-telephone-outline"></i>
+			  </a>
+			  <a href="waze://?ll={{postItem.location.lat}},{{postItem.location.lon}}&navigate=yes" class="item item-icon-right">
+			    <i class="icon ion-ios7-location-outline"></i>
+			    Waze
+			    צא לדרך עם 
+			  </a>
+			  <a ng-click="navigateTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
+			    <i class="icon ion-ios7-location-outline"></i>
+			    {{postItem.address}}
+			  </a>
+			  <a ng-click="share(postItem.id)" class="item item-icon-right">
+			    <i class="icon ion-share"></i>
+			    Share
+			  </a>
+			</div>
+      <div>
+    		<ion-gallery ng-if="postItem.images.length > 0" ion-gallery-items="postItem.images"></ion-galllery>
+    	</div>
+    </div>
+    </ion-content>
+</ion-modal-view>

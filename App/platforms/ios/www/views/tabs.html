@@ -23,7 +23,7 @@
                     </label>
                   </div>
 
-                  <div class="list" ng-show="false">
+                <!--   <div class="list" ng-show="false">
                     <label class="item item-input item-select">
                       <div class="input-label">
                         &nbsp;
@@ -40,7 +40,7 @@
                         <option ng-repeat="st in searchTypes" value="{{st.id}}">{{st.name}}</option>
                       </select>
                     </label>
-                  </div>
+                  </div> -->
 
 
                   <div class="list card post" ng-repeat="item in search(searchQ)" ng-init="postLiked=false">
@@ -57,6 +57,18 @@
               <ion-content padding="true" class="has-header has-subheader">
                   <div class="list card post" ng-repeat="item in aroundMe" ng-init="postLiked=false">
                     <post />
+                  </div>
+                  <div ng-show="aroundMe.length == 0" dir="rtl" style="text-align:center;">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div style="font-size:21px;font-weight:bold;margin-bottom:5px;">
+                      וואו, לאיזה חור הגעת?!
+                    </div>
+                    אין סביבך שום דבר...
+
                   </div>
               </ion-content>
             </ion-tab>
