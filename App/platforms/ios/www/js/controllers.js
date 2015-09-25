@@ -6,6 +6,7 @@ ctrlApp
 })
 .controller('AppCtrl', function ($scope, $window, $timeout, $interval, $ionicTabsDelegate, $ionicModal, Camera, DataLayer, ngFB, $localstorage) {
     $scope.items = [];
+    $scope.fakeLocation = false;
 
     function logger() {
       //console.log(new Date().getTime(),$scope.user)
@@ -112,6 +113,15 @@ ctrlApp
                     lng: parseFloat(position.coords.longitude)
                 }
             };
+
+            if ($scope.fakeLocation){
+              geoLatLng = {
+                location: {
+                    lat: parseFloat("31.915285"),
+                    lng: parseFloat("34.775250")
+                }
+              };
+            }
             
             // set user location
             $scope.user.location = geoLatLng.location;
@@ -131,6 +141,8 @@ ctrlApp
                     logger('Geocoder failed due to: ' + status);
                 }
             });
+
+
         });
     };
     
@@ -248,16 +260,25 @@ ctrlApp
         // Execute action
     });
 
+    //$scope.arrCoomentShow = [];
+    $scope.updateCommentsShow = function(itemId,status){
+      $localstorage.set('commentStatus_' + itemId, status);
 
-
-
+    }
+    $scope.getCommentsShow = function(itemId){
+      return ($localstorage.get('commentStatus_' + itemId) === "true");
+    }
 
     $scope.sendComment = function(postId, commentText,item){
+      if (!$scope.hasValue(commentText)){
+        return;
+      }
+
       DataLayer.addComment(item, $scope.user.facebook.id, $scope.user.name, commentText).then(function (results) {
-        console.log(results);
+        logger(results);
       },function(){
         //onerror
-        console.log("kaki");
+        alert("Server Error, the comment didn't sent.");
       });
       logger(postId, commentText);
     }
@@ -289,7 +310,9 @@ ctrlApp
     $scope.getWindowHeight = function(){
       return $window.innerHeight;
     }
-
+    $scope.getPostImageHeight = function(){
+      return $window.innerHeight/3;
+    }
 
     $scope.getImagesFormat = function(){
       var ret = [];
@@ -395,7 +418,7 @@ ctrlApp
 
 
     $scope.getAroundMe = function(){
-      var searchRadius = 10000;
+      var searchRadius = 30000;
       var ret = [];
 
       _.each($scope.items, function(item, i){
@@ -411,11 +434,8 @@ ctrlApp
     $scope.updateItems = function(){
       DataLayer.getItems().then(function (results) {
           $scope.items = results.data;
-
           $scope.feed = $scope.getFeed();
           $scope.aroundMe = $scope.getAroundMe();
-
-          //do something with the data
         },function(){
           //onerror
         });
@@ -430,6 +450,7 @@ ctrlApp
           name: null,
           location: null,
       }
+      
       $scope.updateUserPosition();
       logger("updateUserPosition",$scope.user);
       $scope.updateItems();
@@ -452,7 +473,7 @@ ctrlApp
         $scope.updateUserPosition();
         logger("updateUserPosition",$scope.user);
 
-        //$scope.updateItems();
+        $scope.updateItems();
 
       }, 15000);
 

@@ -41,9 +41,9 @@
     <div>
       <div>
         <ion-header-bar>
-          <button class="button button-icon icon ion-android-settings" style="color:#c1c1c1;margin-left:10px;"></button>
+          <button class="button button-icon icon ion-android-settings" style="color:#c1c1c1;margin-left:10px;" ng-click="fakeLocation = !fakeLocation "></button>
           <h1 class="title">
-            <img class="title-image" src="https://cdn4.iconfinder.com/data/icons/flat-icon-set/2133/flat_icons-graficheria.it-13.png">
+            <img class="title-image" src="/img/logo2.png">
           </h1>
           <button class="button button-icon" style="height:43px;" ng-click="openLoginModal()">
             <img ng-hide="user.facebook.id &gt; 0" style="height:43px;" src="http://www.wsulaw.edu/images/staff/no-user.png">
@@ -51,30 +51,19 @@
           </button>
         </ion-header-bar>
         
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==4">
-          <h2 class="title">
-            <div ng-click="getPhoto()">
-              <i class="icon ion-ios7-camera"></i>
-              Photo
+        <div class="bar bar-subheader" ng-show="getCurrentTabIndex() &gt; 2">
+            <div class="button-bar">
+              <button style="text-align:left;" ng-click="getPhoto()" class="button button-outline icon-left ion-ios7-camera button-positive">&#xA0; Take Picture</button>
+              <button class="button button-outline icon-left button-positive" ng-class="{true:&apos;ion-ios7-location-outline&apos;, false:&apos;&apos;}[user.location.name.length &gt; 0]">
+                  {{user.location.name}}
+                  <span ng-hide="user.location.name.length &gt; 0" style="color:red;" dir="rtl">
+                    &#x5DE;&#x5D7;&#x5E4;&#x5E9; &#x5DE;&#x5D9;&#x5E7;&#x5D5;&#x5DD;...
+                  </span>
+              </button>
             </div>
-          </h2>
         </div>
-
-        <div class="bar bar-subheader" ng-show="getCurrentTabIndex()==3">
-          <h2 class="title">
-            <div ng-show="user.location.name.length &gt; 0">
-              <i class="icon ion-ios7-location-outline"></i>
-              {{user.location.name}}
-            </div>
-            <div ng-hide="user.location.name.length &gt; 0">
-              <i class="icon ion-loading-c"></i>
-            </div>
-          </h2>
-        </div>
-
 
         <ion-nav-view></ion-nav-view>
-
 
         
       </div>

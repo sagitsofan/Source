@@ -4,9 +4,9 @@
 </div>
 <div class="item item-body">
     <div ng-click="openModal(item.id)">
-      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}');height:{{getPostImageHeigt()}}px;">
+      <div class="imagePlaceHolder" style="background-image:url('{{item.image}}');height:{{getPostImageHeight()}}px;">
         <i ng-hide="item.image.length > 0" class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
-        <div class="imageLabel" dir="rtl">
+        <div class="imageLabel" style="margin-top: {{getPostImageHeight()-37}}px" dir="rtl">
           מרחק:
           <span ng-hide="user.location == null">
             {{calcDistanceFromUser(item.location.lat,item.location.lon)}}
@@ -29,7 +29,7 @@
           <i class="icon ion-thumbsup" style="margin-right: 9px;"></i>
           <span style="font-size:13px;position: relative;top:2px;">{{item.likes}} Likes</span>
         </a>
-        <a ng-click="showComments=!showComments" ng-class="{'active':showComments}" class="button">
+        <a ng-click="showComments=!showComments;updateCommentsShow(item.id,showComments)" ng-class="{'active':showComments}" class="button">
           <i class="icon ion-ios7-chatboxes" style="margin-right: 9px;"></i>
           <span style="font-size:13px;position: relative;top:2px;">
             <span ng-show="item.comments.length > 0">{{item.comments.length}} Comments</span>
@@ -38,26 +38,23 @@
         </a>
       </div>
 
-      <div ng-show="showComments" class="list">
+      <div ng-init="showComments=getCommentsShow(item.id)" ng-show="showComments" class="list">
         <div class="list" style="padding-top: 0px;margin-bottom: 0px;">
+          <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left" href="#">
+            <i class="icon" ng-show="cmt.userId">
+              <img ng-src="{{getFacebookImage(cmt.userId)}}" style="height:35px;" />
+            </i>
+            <div style="font-size:13px;font-weight:bold">{{cmt.userFullName}}</div>
+            <div dir="rtl" style="font-size:15px;">{{cmt.title}}</div>
+          </a>
+
           <div class="item item-input-inset" style="background:#E5E5E5;">
-            
             <label class="item-input-wrapper" style="background:#fff;">
               <input ng-model="userComment" type="text" placeholder="מה דעתך?" dir="rtl" style="width:100%;background:#fff;">
             </label>
-            <button ng-click="sendComment(item.id,userComment,item)" class="button comment-button icon-left ion-android-send button-positive">send</button>
+            <button ng-click="sendComment(item.id,userComment,item);userComment='';" class="button comment-button icon-left ion-android-send button-positive">send</button>
           </div>
         </div>
-
-
-        <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left" href="#">
-          <i class="icon" ng-show="cmt.userId">
-            <img ng-src="{{getFacebookImage(cmt.userId)}}" style="height:35px;" />
-          </i>
-          <div style="font-size:13px;font-weight:bold">{{cmt.userFullName}}</div>
-          <div dir="rtl" style="font-size:15px;">{{cmt.title}}</div>
-        </a>
-
       </div>
     </div>
 </div>

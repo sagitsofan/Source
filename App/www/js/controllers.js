@@ -260,16 +260,25 @@ ctrlApp
         // Execute action
     });
 
+    //$scope.arrCoomentShow = [];
+    $scope.updateCommentsShow = function(itemId,status){
+      $localstorage.set('commentStatus_' + itemId, status);
 
-
-
+    }
+    $scope.getCommentsShow = function(itemId){
+      return ($localstorage.get('commentStatus_' + itemId) === "true");
+    }
 
     $scope.sendComment = function(postId, commentText,item){
+      if (!$scope.hasValue(commentText)){
+        return;
+      }
+
       DataLayer.addComment(item, $scope.user.facebook.id, $scope.user.name, commentText).then(function (results) {
-        console.log(results);
+        logger(results);
       },function(){
         //onerror
-        console.log("kaki");
+        alert("Server Error, the comment didn't sent.");
       });
       logger(postId, commentText);
     }
@@ -301,7 +310,9 @@ ctrlApp
     $scope.getWindowHeight = function(){
       return $window.innerHeight;
     }
-
+    $scope.getPostImageHeight = function(){
+      return $window.innerHeight/3;
+    }
 
     $scope.getImagesFormat = function(){
       var ret = [];
@@ -439,6 +450,7 @@ ctrlApp
           name: null,
           location: null,
       }
+      
       $scope.updateUserPosition();
       logger("updateUserPosition",$scope.user);
       $scope.updateItems();

@@ -10,7 +10,7 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .tab-content{
-	margin-top:40px;
+	margin-top:0px;
 }
 
 
@@ -50,7 +50,9 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 
 
 .bar-header{
+    background-color: #fff;
 	padding: 0px;
+    border-top: solid 1px #406EBD;
 }
 
 .bar-header .button{
@@ -64,7 +66,28 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .bar-subheader{
-    background-color: rgba(255,255,255,0.8);
+    background-color: transparent;
+    padding: 0px;
+    height:35px;
+}
+
+.bar-subheader .button.button-positive.button-outline{
+	background-color:#fff;
+}
+
+.button.button-positive.button-outline.active, .button.button-positive.button-outline.activated {
+    background-color: #387ef5;
+    box-shadow: none;
+    color: #fff;
+}
+
+
+.button-bar > .button:first-child{
+	border-radius: 0px 0px 0px 10px;
+}
+.button-bar > .button:last-child{
+	 border-radius: 0px 0px 10px 0px;
+
 }
 
 
@@ -112,7 +135,7 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .imageLabel{
-	margin-top: 263px;
+	margin-top: 163px;
     font-size: 12px;
     text-align: right;
     padding: 10px 10px 5px 10px;
