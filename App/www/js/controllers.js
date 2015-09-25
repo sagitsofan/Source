@@ -283,20 +283,39 @@ ctrlApp
       logger(postId, commentText);
     }
 
-    $scope.userLike = function (id) {
-        for (i = 0; i < $scope.items.length; i++) {
-            if ($scope.items[i].id == id) {
-                $scope.items[i].likes = $scope.items[i].likes + 1;
-            }
-        }
+    $scope.addLike = function (item) {
+      DataLayer.addLike(item, $scope.user.facebook.id, $scope.user.name).then(function (results) {
+        logger(results);
+      },function(){
+        //onerror
+        alert("Server Error, the like didn't added.");
+      });
+      logger("addLike", item);
+    }
+
+    $scope.removeLike = function (item) {
+      DataLayer.removeLike(item, $scope.user.facebook.id).then(function (results) {
+        logger(results);
+      },function(){
+        //onerror
+        alert("Server Error, the remove like didn't worked.");
+      });
+      logger("removeLike", item);
     }
     
-    $scope.removeLike = function (id) {
-        for (i = 0; i < $scope.items.length; i++) {
-            if ($scope.items[i].id == id) {
-                $scope.items[i].likes = $scope.items[i].likes - 1;
-            }
+    $scope.didUserLikePost = function(item){
+      var ret = false;
+
+      _.each(item.likes,function(like,i){
+        if (like.userId == $scope.user.facebook.id){
+          ret = true;
+          return false;
         }
+      });
+
+      console.log("did user like post", ret)
+      
+      return ret;
     }
 
     $scope.getItem = function (id) {
@@ -312,20 +331,6 @@ ctrlApp
     }
     $scope.getPostImageHeight = function(){
       return $window.innerHeight/3;
-    }
-
-    $scope.getImagesFormat = function(){
-      var ret = [];
-      if (typeof arr == "undefined"){
-        return ret;
-      }
-      for (i = 0; i < $scope.postItem.images.length; i++) {
-        ret.push({
-          "src":$scope.postItem.images[i]
-        });
-      }
-
-      return ret;
     }
 
     //dev data
@@ -475,7 +480,7 @@ ctrlApp
 
         $scope.updateItems();
 
-      }, 15000);
+      }, 10000);
 
     };
     $scope.init();

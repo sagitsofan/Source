@@ -28,31 +28,64 @@ ctrlApp
 
 
 ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) {
-        var data = {};
-        var baseUrl = "http://imsandbox.cloudapp.net/api";
-        var schemaPosts = "feed";
+  var data = {};
+  var baseUrl = "http://imsandbox.cloudapp.net/api";
+  var schemaPosts = "feed";
 
-        data.getItems = function () {
-            return $http.get(baseUrl + '/' + schemaPosts);
-        }
+  data.getItems = function () {
+      return $http.get(baseUrl + '/' + schemaPosts);
+  }
 
-        data.addComment = function(item, userId, userFullName, commentText){
+  data.addComment = function(item, userId, userFullName, commentText){
+    var comment = {
+      "userId": userId,
+      "userFullName": userFullName,
+      "title": commentText
+    };
 
-          
-          var comment = {
-            "userId": userId,
-            "userFullName": userFullName,
-            "title": commentText
-          };
+    var data = item;
+    data.comments.push(comment);
 
-          var data = item;
-          data.comments.push(comment);
+    return $http.post(baseUrl + '/update/' + schemaPosts + '/' + item._id + '/', {
+      data: data
+    });
+  }
 
-          return $http.post(baseUrl + '/update/' + schemaPosts + '/' + item._id + '/', {
-            data: data
-          });
+  data.addLike = function(item, userId, userFullName){
+    var data = item;
+    
+    var like = {
+      "userId": userId,
+      "userFullName": userFullName,
+    };
+    data.likes.push(like);
 
-        }
+    return $http.post(baseUrl + '/update/' + schemaPosts + '/' + item._id + '/', {
+      data: data
+    });
+  }
+
+  data.removeLike = function(item, userId){
+    
+    var newLikes = _.reject(item.likes, function(item,i){
+      return item.userId == userId;
+    });
+
+    var data = item;
+    data.likes = newLikes;
+
+    return $http.post(baseUrl + '/update/' + schemaPosts + '/' + item._id + '/', {
+      data: data
+    });
+  }
+
+
+
+
+
+
+
+
 
         data.updateRowData = function (schema, id, data) {
             return $http.post(baseUrl + '/update/' + schema + '/' + id, {
