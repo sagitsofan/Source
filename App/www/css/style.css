@@ -2,10 +2,12 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 	font-family: arial !important;
 }
 
-
+.userImage{
+    height:43px;
+}
 
 .pane, .view{
-	background: #e3e9f9;
+	background: #D6DEF5;
 	font-family: 'Arimo', arial;
 }
 
@@ -111,7 +113,8 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .item{
-	border-width:0px;
+	/*border-width:0px;*/
+	border-color:#F7F7F7;
 }
 
 .item-body{
@@ -131,7 +134,7 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
 }
 
 .item.postComment{
-	border-bottom: solid 2px #F7F7F7;
+	/*border-bottom: solid 2px #F7F7F7;*/
 }
 
 .imageLabel{
@@ -151,3 +154,27 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', e
 
 }
 
+
+.imageView{
+	top:45px;
+}
+
+.imageView button.button.button-outline.button-light.close-btn {
+    background-color: black;
+    padding: 0px 5px;
+    font-size: 11px;
+    margin: 0px;
+    line-height: normal;
+    margin: 5px;
+    color: #ececec;
+}
+
+.imageView button.button.button-outline.button-light.close-btn.activated {
+    background-color: #fff;
+    padding: 0px 5px;
+    font-size: 11px;
+    margin: 0px;
+    line-height: normal;
+    margin: 5px;
+    color: #000;
+}

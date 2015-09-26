@@ -35,7 +35,15 @@ ctrlApp
       }
     };
 
-    $scope.getFacebookImage = function(userId,qs){
+    $scope.userLoggedIn = function(){
+      return (parseInt($scope.user.facebook.id) > 0);
+    }
+
+    $scope.getUserImage = function(qs){
+      var userId = $scope.user.facebook.id;
+      if (!$scope.hasValue(userId) || !$scope.userLoggedIn()){
+        return 'http://www.wsulaw.edu/images/staff/no-user.png';
+      }
       var queryString = qs || "";
       return "http://graph.facebook.com/"+userId+"/picture" + queryString;
     }
@@ -56,6 +64,17 @@ ctrlApp
         return d; // returns the distance in meter
     }
 
+    $scope.wazeTo = function(lat, lng){
+      if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
+        window.location = "waze://?ll=" + lat + "," + lng + "&navigate=yes";
+      }
+      else if (ionic.Platform.isAndroid()) {
+        window.location = "http://www.israeltraveler.co.il";
+      } else {
+        window.open("waze://?ll=" + lat + "," + lng + "&navigate=yes");
+      }
+      
+    }
      $scope.navigateTo = function navigate(lat, lng) {
       // If it's an iPhone..
       if ((navigator.platform.indexOf("iPhone") !== -1) || (navigator.platform.indexOf("iPod") !== -1)) {
@@ -77,7 +96,7 @@ ctrlApp
         window.location = protocol + 'maps.apple.com/maps?daddr=' + lat + ',' + lng + '&amp;ll=';
       }
       else if (ionic.Platform.isAndroid()) {
-        window.location = "http://www.israeltraveler.co.il";
+        window.location('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
       } else {
         window.open('http://maps.google.com?daddr=' + lat + ',' + lng + '&amp;ll=');
       }
@@ -108,28 +127,31 @@ ctrlApp
             logger("found lat-lng: " + pos);
             var geocoder = new google.maps.Geocoder;
             var geoLatLng = {
-                location: {
-                    lat: parseFloat(position.coords.latitude),
-                    lng: parseFloat(position.coords.longitude)
-                }
+              lat: parseFloat(position.coords.latitude),
+              lng: parseFloat(position.coords.longitude),
             };
 
+            //clicking the settings icon toggle fakeLocation
             if ($scope.fakeLocation){
               geoLatLng = {
-                location: {
-                    lat: parseFloat("31.915285"),
-                    lng: parseFloat("34.775250")
-                }
+                lat: parseFloat("31.915285"),
+                lng: parseFloat("34.775250")
               };
+            }
+
+            //fill existing name till geocoder retrive result
+            if ($scope.user.location != null){
+              geoLatLng.name = $scope.user.location.name;
             }
             
             // set user location
-            $scope.user.location = geoLatLng.location;
-            
-            geocoder.geocode(geoLatLng, function (results, status) {
+            $scope.user.location = geoLatLng;
+
+            geocoder.geocode({location:geoLatLng}, function (results, status) {
                 if (status === google.maps.GeocoderStatus.OK) {
                     if (results[1]) {
                         logger("translte lat-lng to address", results[1].formatted_address);
+                        
                         //set user address
                         $scope.user.location.name = results[1].formatted_address;
                         $scope.aroundMe = $scope.getAroundMe();
@@ -236,12 +258,16 @@ ctrlApp
         animation: 'slide-in-up'
     }).then(function (modal) {
         $scope.modal = modal;
+        
+
     });
 
     $scope.postItem = null;
     $scope.openModal = function (itemId) {
         $scope.postItem = $scope.getItem(itemId);
+        $scope.postItem.modalPostLiked = $scope.didUserLikePost($scope.postItem);
         $scope.modal.show();
+
     };
     $scope.closeModal = function () {
         $scope.modal.hide();
@@ -294,6 +320,10 @@ ctrlApp
     }
 
     $scope.removeLike = function (item) {
+      if (item == null)
+        return false;
+      
+
       DataLayer.removeLike(item, $scope.user.facebook.id).then(function (results) {
         logger(results);
       },function(){
@@ -304,6 +334,11 @@ ctrlApp
     }
     
     $scope.didUserLikePost = function(item){
+
+
+      if (item == null)
+        return false;
+
       var ret = false;
 
       _.each(item.likes,function(like,i){
@@ -452,6 +487,10 @@ ctrlApp
       $scope.user = {
           isLoggedIn:false,
           id: null,
+          facebook:{
+            id:0,
+            name:""
+          },
           name: null,
           location: null,
       }

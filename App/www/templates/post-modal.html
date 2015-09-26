@@ -10,12 +10,14 @@
       <div dir="rtl">
       	{{postItem.longText}}
       </div>
+      
+
       <div class="list card" style="text-align:right;">
 			  <a ng-show="hasValue(postItem.phone)" href="tel:{{postItem.phone}}" class="item item-icon-right">
 			    {{postItem.phone}}
 			    <i class="icon ion-ios7-telephone-outline"></i>
 			  </a>
-			  <a href="waze://?ll={{postItem.location.lat}},{{postItem.location.lon}}&navigate=yes" class="item item-icon-right">
+			  <a ng-click="wazeTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
 			    <i class="icon ion-ios7-location-outline"></i>
 			    Waze
 			    צא לדרך עם 
@@ -29,9 +31,48 @@
 			    Share
 			  </a>
 			</div>
+
+
       <div>
-    		<ion-gallery ng-if="postItem.images.length > 0" ion-gallery-items="postItem.images"></ion-galllery>
+    		<ion-gallery ng-if="postItem.images.length > 1" ion-gallery-items="postItem.images" ion-gallery-row="2" ></ion-galllery>
     	</div>
+
+
+	  	<div style="margin-top:25px;">
+	      <div class="button-bar">
+	        <a ng-init="" class="button" ng-class="{'button-positive':postItem.modalPostLiked}" ng-click="(!postItem.modalPostLiked) ? addLike(postItem) : removeLike(postItem);postItem.modalPostLiked=!postItem.modalPostLiked">
+	          <i class="icon ion-thumbsup" style="margin-right: 9px;"></i>
+	          <span style="font-size:13px;position: relative;top:2px;">{{postItem.likes.length}} Likes</span>
+	        </a>
+	        <a ng-click="modalShowComments=!modalShowComments" ng-class="{'active':modalShowComments}" class="button">
+	          <i class="icon ion-ios7-chatboxes" style="margin-right: 9px;"></i>
+	          <span style="font-size:13px;position: relative;top:2px;">
+	            <span ng-show="postItem.comments.length > 0">{{postItem.comments.length}} Comments</span>
+	            <span ng-show="postItem.comments.length == 0">?מה דעתך</span>
+	          </span>
+	        </a>
+	      </div>
+
+	      <div ng-init="modalShowComments=true" ng-show="modalShowComments" class="list">
+	        <div class="list" style="padding-top: 0px;margin-bottom: 0px;">
+	          <a ng-repeat="cmt in postItem.comments" class="item postComment item-icon-left" href="#">
+	            <i class="icon" ng-show="cmt.userId">
+	              <img ng-src="{{getFacebookImage(cmt.userId)}}" style="height:35px;" />
+	            </i>
+	            <div style="font-size:13px;font-weight:bold">{{cmt.userFullName}}</div>
+	            <div dir="rtl" style="font-size:15px;">{{cmt.title}}</div>
+	          </a>
+
+	          <div class="item item-input-inset" style="background:#E5E5E5;">
+	            <label class="item-input-wrapper" style="background:#fff;">
+	              <input ng-model="userComment" type="text" placeholder="מה דעתך?" dir="rtl" style="width:100%;background:#fff;">
+	            </label>
+	            <button ng-click="sendComment(postItem.id,userComment,postItem);userComment='';" class="button comment-button icon-left ion-android-send button-positive">send</button>
+	          </div>
+	        </div>
+	      </div>
+	    </div>
+
     </div>
     </ion-content>
 </ion-modal-view>

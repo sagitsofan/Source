@@ -66,7 +66,6 @@ ctrlApp.service('DataLayer', ['$http', '$location', function ($http, $location) 
   }
 
   data.removeLike = function(item, userId){
-    
     var newLikes = _.reject(item.likes, function(item,i){
       return item.userId == userId;
     });
