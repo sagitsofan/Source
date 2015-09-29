@@ -42,7 +42,7 @@
         <div class="list" style="padding-top: 0px;margin-bottom: 0px;">
           <a ng-repeat="cmt in item.comments" class="item postComment item-icon-left" href="#">
             <i class="icon" ng-show="cmt.userId">
-              <img ng-src="{{getUserImage()}}" class="userImage" />
+              <img ng-src="{{getUserImage()}}" class="userImage" style="height:35px;" />
             </i>
             <div style="font-size:13px;font-weight:bold">{{cmt.userFullName}}</div>
             <div dir="rtl" style="font-size:15px;">{{cmt.title}}</div>

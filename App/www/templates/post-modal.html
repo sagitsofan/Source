@@ -1,5 +1,6 @@
 <ion-modal-view style="background-color: rgba(255,255,255,0.95);">
     <ion-header-bar>
+        <button ng-click="share(postItem.id)" class="button button-icon icon ion-share"></button>
         <h1 class="title">{{postItem.title}}</h1>
         <button ng-click="closeModal()" class="button button-icon icon ion-ios7-close-outline"></button>
     </ion-header-bar>
@@ -25,10 +26,6 @@
 			  <a ng-click="navigateTo(postItem.location.lat,postItem.location.lon)" class="item item-icon-right">
 			    <i class="icon ion-ios7-location-outline"></i>
 			    {{postItem.address}}
-			  </a>
-			  <a ng-click="share(postItem.id)" class="item item-icon-right">
-			    <i class="icon ion-share"></i>
-			    Share
 			  </a>
 			</div>
 

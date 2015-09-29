@@ -46,16 +46,16 @@
             <img class="title-image" src="/img/logo2.png">
           </h1>
           <button class="button button-icon" style="height:43px;" ng-click="openLoginModal()">
-            <img ng-src="{{getUserImage()}}" class="userImage" />
+            <img ng-src="{{getUserImage()}}" class="userImage">
           </button>
         </ion-header-bar>
         
         <div class="bar bar-subheader">
             <div class="button-bar">
-              <button style="text-align:left;" ng-click="getPhoto()" class="button button-outline icon-left ion-ios7-camera button-positive">&#xA0; Take Picture</button>
+              <button style="border-right: solid 1px #F7F7F7;" ng-click="getPhoto()" class="button button-outline icon-left ion-ios7-camera button-positive">&#xA0; Take Picture</button>
               <button class="button button-outline icon-left button-positive" ng-class="{true:&apos;ion-ios7-location-outline&apos;, false:&apos;&apos;}[user.location.name.length &gt; 0]">
                   {{user.location.name}}
-                  <span ng-hide="user.location.name.length > 0" style="color:red;" dir="rtl">
+                  <span ng-hide="user.location.name.length &gt; 0" style="color:red;" dir="rtl">
                     &#x5DE;&#x5D7;&#x5E4;&#x5E9; &#x5DE;&#x5D9;&#x5E7;&#x5D5;&#x5DD;...
                   </span>
               </button>

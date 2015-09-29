@@ -1,0 +1,165 @@
+{
+    "_id": ObjectID("55fb21bfeae12e00c9ce0fca"),
+    "schema": {
+        "fields": [
+            {
+                "name": "area",
+                "label": "איזור",
+                "type": "input"
+            },
+            {
+                "name": "title",
+                "label": "כותרת",
+                "type": "input"
+            },
+            {
+                "name": "subTtitle",
+                "label": "תת כותרת",
+                "type": "input"
+            },
+            {
+                "name": "image",
+                "label": "תמונה",
+                "type": "input"
+            },
+            {
+                "name": "phone",
+                "label": "טלפון",
+                "type": "input"
+            },
+            {
+                "name": "address",
+                "label": "כתובת",
+                "type": "input"
+            },
+            {
+                "name": "longText",
+                "label": "טקסט ארוך",
+                "type": "textarea"
+            },
+            {
+                "name": "location",
+                "label": "מיקום",
+                "type": "multiple",
+                "fields": [
+                    {
+                        "name": "lat",
+                        "label": "lat",
+                        "type": "input"
+                    },
+                    {
+                        "name": "lon",
+                        "label": "lon",
+                        "type": "input"
+                    }
+                ]
+            },
+            {
+                "name": "likes",
+                "label": "לייקים",
+                "type": "input"
+            },
+            {
+                "name": "Gay",
+                "label": "הומו",
+                "type": "checkbox"
+            },
+            {
+                "name": "Satla",
+                "label": "סטלה",
+                "type": "checkbox"
+            },
+            {
+                "name": "size",
+                "label": "מידה",
+                "type": "Radiobutton",
+                "fields": [
+                    {
+                        "name": "one",
+                        "label": "אחד"
+                    },
+                    {
+                        "name": "two",
+                        "label": "שתיים"
+                    }
+                ]
+            },
+            {
+                "name": "wather",
+                "label": "מזג אוויר",
+                "type": "Dropdown",
+                "fields": [
+                    {
+                        "name": "cool",
+                        "label": "קר"
+                    },
+                    {
+                        "name": "warm",
+                        "label": "חם"
+                    }
+                ]
+            },
+            {
+                "name": "proffesinal",
+                "label": "מקצוע",
+                "type": "Checkboxs",
+                "fields": [
+                    {
+                        "name": "painter",
+                        "label": "צייר"
+                    },
+                    {
+                        "name": "pasal",
+                        "label": "פסל"
+                    },
+                    {
+                        "name": "tacnat",
+                        "label": "תכנת"
+                    }
+                ]
+            },
+            {
+                "name": "MoreText",
+                "label": "טקסט עשיר",
+                "type": "rtf"
+            },
+            {
+                "name": "PickupDate",
+                "label": "תאריך איסוף",
+                "type": "date"
+            },
+            {
+                "name": "comments",
+                "label": "תגובות",
+                "type": "grid",
+                "loobyField": "title",
+                "fields": [
+                    {
+                        "name": "title",
+                        "label": "כותרת",
+                        "type": "input"
+                    },
+                    {
+                        "name": "subtitle",
+                        "label": "תת כותרת",
+                        "type": "input"
+                    },
+                    {
+                        "name": "author",
+                        "label": "שם הכותב",
+                        "type": "input"
+                    }
+                ]
+            },
+            {
+                "name": "Gallery",
+                "label": "גלרייה",
+                "type": "gallery"
+            }
+        ]
+    },
+    "loobyField": "title",
+    "icon": "puzzle",
+    "name": "news",
+    "label": "חדשות"
+}

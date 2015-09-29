@@ -6,24 +6,33 @@
 		</ion-header-bar>
 
 		<ion-content>
-			<label class="item">
-				<button class="button button-block button-positive" ng-click="fbLogin()">
-					Login with Facebook
-				</button>
-			</label>
-			<div>
-				<button ng-click="closeLoginModal()" class="button button-icon icon ion-ios7-close-outline"></button>
+			<div style="padding-top:50px;">
+				<label class="item">
+					<button class="button button-block button-positive" ng-click="fbLogin()">
+						Login with Facebook
+					</button>
+				</label>
+				<label class="item">
+					<button class="button button-block button-stable" ng-click="closeLoginModal()">
+						המשך בלי פייסבוק
+					</button>
+				</label>
 			</div>
 		</ion-content>
 	</div>
+
+
 	<div ng-show="user.isLoggedIn">
 		<ion-header-bar>
-			<h1 class="title">User is logged in</h1>
+			<h1 class="title">{{user.facebook.name}}</h1>
+			<button class="button button-icon" style="height:43px;" ng-click="openLoginModal()">
+	            <img ng-src="{{getUserImage()}}" class="userImage" />
+          	</button>
 		</ion-header-bar>
 		<ion-content>
 			<div class="list card">
 				<div class="item">
-					<h2>{{user.facebook.name}}</h2>
+					<h2></h2>
 					<p>{{user.facebook.city}}</p>
 				</div>
 				<div class="item item-body">

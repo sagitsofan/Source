@@ -55,6 +55,7 @@
 
             <ion-tab title="בסביבה שלי" icon="ion-ios7-location-outline">
               <ion-content padding="true" class="has-header has-subheader">
+                <div style="top:70px;position:relative;">
                   <div class="list card post" ng-repeat="item in aroundMe" ng-init="postLiked=false">
                     <post />
                   </div>
@@ -68,16 +69,18 @@
                       וואו, לאיזה חור הגעת?!
                     </div>
                     אין סביבך שום דבר...
-
                   </div>
+                </div>
               </ion-content>
             </ion-tab>
 
             <ion-tab title="לאן היום" icon="ion-ios7-paperplane-outline">
                 <ion-content padding="false" class="has-header">
-                    <div style="top:70px;" class="list card post" ng-repeat="item in feed" ng-init="postLiked=false">
+                  <div style="top:70px;position:relative;"> 
+                    <div class="list card post" ng-repeat="item in feed" ng-init="postLiked=false">
                         <post></post>
                     </div>
+                  </div>
                 </ion-content>
             </ion-tab>
         </ion-tabs>

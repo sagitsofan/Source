@@ -71,15 +71,26 @@ body,h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     background-color: transparent;
     padding: 0px;
     height:35px;
+    border:0px;
+
 }
 
 .bar-subheader .button.button-positive.button-outline{
 	background-color:#fff;
+    border-color: #fff;
+
+        -webkit-box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.04);
+-moz-box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.04);
+box-shadow: 0px 5px 7px 0px rgba(0,0,0,0.04);
+
+
+
 }
 
 .button.button-positive.button-outline.active, .button.button-positive.button-outline.activated {
     background-color: #387ef5;
     box-shadow: none;
+    border-color: #387ef5;
     color: #fff;
 }
 
